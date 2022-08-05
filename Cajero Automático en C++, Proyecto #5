@@ -13,7 +13,7 @@ main()
   
   Esta es la rama principal, en donde escribiremos el código definitivo del programa.
   
-  
+  lola
   system("pause");
   return 0;
 }
