@@ -13,6 +13,6 @@ main()
                 // Muestrame si ves esto @Laura y @Paula Sí
   
   cout<<" | x | o | x | o | x | o | x | o | x | o | x | o | x | o | x | o | x | o | x | o | x | o | x | o | ";
-  
+   si
   system("pause");
 }
