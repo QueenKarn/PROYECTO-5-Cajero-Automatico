@@ -8,7 +8,10 @@ using namespace std;
 
 main()
 {
+  setlocale(LC_ALL, "");
   cout<<" | x | o | x | o | x | o | x | o | x | o | x | o | x | o | x | o | x | o | x | o | x | o | x | o | ";
   
+  
   system("pause");
+  return 0;
 }
