@@ -10,7 +10,7 @@ main()
 {
   cout<<" | x | o | x | o | x | o | x | o | x | o | x | o | x | o | x | o | x | o | x | o | x | o | x | o | ";
   
-                // Muestrame si ves esto @Laura y @Paula
+                // Muestrame si ves esto @Laura y @Paula Sí
   
   cout<<" | x | o | x | o | x | o | x | o | x | o | x | o | x | o | x | o | x | o | x | o | x | o | x | o | ";
   
