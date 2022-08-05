@@ -1,1 +1,17 @@
 /* Hola /*
+
+#include<iostream>
+#include<time>
+#include<string>
+
+using namespace std;
+
+main()
+{
+  cout<<" | x | o | x | o | x | o | x | o | x | o | x | o | x | o | x | o | x | o | x | o | x | o | x | o | ";
+  
+  
+  cout<<" | x | o | x | o | x | o | x | o | x | o | x | o | x | o | x | o | x | o | x | o | x | o | x | o | ";
+  
+  system("pause");
+}
