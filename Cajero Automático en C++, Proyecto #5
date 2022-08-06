@@ -1,7 +1,7 @@
 /* Hola gg/*
 
 #include<iostream>
-#include<time>
+#include<ctime>
 #include<string>
 
 using namespace std;
