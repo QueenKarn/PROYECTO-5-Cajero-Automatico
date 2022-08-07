@@ -11,9 +11,8 @@ main()
   setlocale(LC_ALL, "");
   cout<<" | x | o | x | o | x | o | x | o | x | o | x | o | x | o | x | o | x | o | x | o | x | o | x | o | ";
   
-  Esta es la rama principal, en donde escribiremos el código definitivo del programa.
+  (lunes, cartel, inicio, comentar, struct, archivos, :c)
   
-  lola
   system("pause");
   return 0;
 }
