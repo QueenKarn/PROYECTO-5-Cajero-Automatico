@@ -1,18 +1,75 @@
-/* Hola /*
-
-#include<iostream>
-#include<time>
-#include<string>
-
+#include <iostream>
+#include <stdlib.h>
+#include <conio.h>
+#include <string.h>
+#include <fstream.>
 using namespace std;
+struct data {
+	char numerot[100],pin[100]; 
+};
+void tarjetase();
+void leer();
 
-main()
-{
-  cout<<" | x | o | x | o | x | o | x | o | x | o | x | o | x | o | x | o | x | o | x | o | x | o | x | o | ";
-  
-                // Muestrame si ves esto @Laura y @Paula Sí
-  
-  cout<<" | x | o | x | o | x | o | x | o | x | o | x | o | x | o | x | o | x | o | x | o | x | o | x | o | ";
-   si
-  system("pause");
+int main(){
+	int opcion;
+	cout<<" MENU";
+	cout<<" 1. Insertar tarjeta";
+	cout<<" 2. Ver datos ";
+	cout<<" 3. salir";
+	cin>>opcion;
+	switch(opcion){
+		case 1: 
+			tarjetase();
+		break;
+		case 2: 
+			leer();
+		break;	
+	
+	} 
+
+	
+}
+ void tarjetase(){
+	ofstream archivot;
+ 	
+	archivot.open ("Tarjetasprederterminadas.dat",ios::out | ios::binary);
+ 		if(archivot.fail()){
+ 			cout<<"No se puede crear el archivo"<<endl;
+ 			exit(1);
+	 	}
+	 	
+	 	data datos[5];
+	 	for(int i=0;i<5;i++){
+	 	fflush(stdin);	
+	 	cout<<"Digite el numero de tarjeta debito";
+	 	cin.getline(datos[i].numerot,100,'\n');
+	 	cout<<"Digite el Pin de tarjeta debito";
+	 	cin.getline(datos[i].pin,100,'\n');
+	 	archivot.write((char*)&datos[i],sizeof(datos));
+	 	}
+		archivot.close();
+	 	
+	
+	 	
+ }
+ 
+ void leer(){
+ 	ifstream archivot;
+	archivot.open ("Tarjetasprederterminadas.dat",ios::in | ios::binary);
+ 		if(archivot.fail()){
+ 			cout<<"No se puede crear el archivo"<<endl;
+ 			exit(1);
+	 	}
+		data datos[5];
+				for(int i=0;i<5;i++){
+					if(!archivot.eof()){
+					fflush(stdin);	
+					archivot.read((char*)&datos[i],sizeof(datos));	
+					cout<<"Tarjeta "<<datos[i].numerot<<endl;
+					cout<<"PIN"<<datos[i].pin<<endl;
+					}
+				}
+				
+			
+		archivot.close();
 }
