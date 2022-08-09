@@ -1,18 +1,134 @@
-/* Hola gg/*
 
 #include<iostream>
 #include<ctime>
-#include<string>
+#include<string.h>
+#include <stdio.h>
 
 using namespace std;
 
-main()
+void CrearFichero(FILE *Fichero);
+void InsertarDatos(FILE *Fichero, int i);
+void VerDatos(FILE *Fichero, int i);
+
+struct persona
 {
-  setlocale(LC_ALL, "");
-  cout<<" | x | o | x | o | x | o | x | o | x | o | x | o | x | o | x | o | x | o | x | o | x | o | x | o | ";
+	unsigned int ntarjeta;
+    int pin;
+    int dinero;
+};
+
+int main(int argc, char** argv)
+{
+	setlocale(LC_ALL, ""); // Esta línea permite que la máquina comprenda tíldes.
+	system("color 0f");
+	
+	cout<<"\n\t Bienvenido, este programa define un registro recopilatorio de n países por medio de la sentencia struct. \n\n";
+    int i=0, opc=0, cantp=0, salida=0;	
+    
+	FILE *fichero;
+	
+	while (!salida)
+ 	{	
+ 		cout<<"\n\t MENU: ";
+    	cout<<"\n\t 1. Crear fichero: ";
+    	cout<<"\n\t 2. Insertar tarjetas y pines: ";
+    	cout<<"\n\t 3. Ver datos: ";
+    	cout<<"\n\t 4. Salir: \n";
+    	
+ 		cout<<"\n\t Digite la opción: ";
+ 		cin>>opc;
+ 
+ 		switch(opc)
+ 		{
+ 			case 1:
+ 				CrearFichero(fichero);
+ 			break;
+ 			case 2:
+ 				InsertarDatos(fichero, i);
+ 			break;
+ 			case 3:
+ 				VerDatos(fichero, i);
+ 			break;
+ 			case 4:
+			 	salida=1;
+ 			break;
+ 			default:
+				cout<<"\n\t Opcion no valida, reintente.";
+ 		}
+ 	}
+ 
+ 	cout<<"\n\t Gracias por utilizar nuestro servicio. \n\n\n";
+	cout<<"\t ";
+	system("pause");
+	return 0;
+}
+
+void CrearFichero(FILE *Fichero)
+{
+ 	Fichero = fopen("fichero", "r");
+ 
+ 	if(!Fichero)
+ 	{
+ 		Fichero = fopen("fichero", "w");
+ 		cout<<"\n\tArchivo creado!";
+ 	}
+ 	else
+ 	{
+ 		cout<<"\n\tEl fichero ya existe!";
+ 	}
+  	fclose (Fichero);
+ 
+ 	return;
+}
+ 
+void InsertarDatos(FILE *Fichero, int i)
+{
+	Fichero = fopen("fichero", "a+");
+ 
+	if(Fichero == NULL)
+	{
+		cout<<"\n\tFichero no existe! \n\tPor favor créelo.";
+		return;
+	}
+ 		persona indiv[1];
+ 		
+  		cout<<"\n\tDigite el número de tarjeta: ";
+		cin>>indiv[0].ntarjeta;
+ 
+		cout<<"\n\tDigite el número PIN: ";
+		cin>>indiv[0].pin;
+
   
-  (lunes, cartel, inicio, comentar, struct, archivos, :c)
-  
-  system("pause");
-  return 0;
+	fwrite(&indiv, sizeof(struct persona), 1, Fichero);
+	fclose(Fichero);
+ 
+	return;
+}
+ 
+void VerDatos(FILE *Fichero, int i)
+{
+	int numero=1;
+	persona indiv[1];
+	
+ 	Fichero=fopen("fichero", "r");
+ 
+	if(Fichero == NULL)
+	{
+		cout<<"\n\tFichero no existe! \n\tPor favor creelo";
+		return;
+	}
+ 
+	fread(&indiv, sizeof(struct persona), 1, Fichero);
+  	
+	cout<<"\n\t N.Tarjeta \tPIN \n";
+ 
+	while(!feof(Fichero))
+	{
+		cout<<" "<<indiv[0].ntarjeta<<" "<<indiv[0].pin;
+		fread(&indiv, sizeof(struct persona), 1, Fichero);
+		numero++;
+	}
+ 	fclose(Fichero);
+ 
+	return;
 }
