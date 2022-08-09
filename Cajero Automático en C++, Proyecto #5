@@ -5,10 +5,17 @@
 #include <fstream.>
 using namespace std;
 struct data {
-	char numerot[100],pin[100]; 
+   float saldo;
+   float transacciones;
+   int  pin;
 };
-void tarjetase();
-void leer();
+struct tarjeta{
+	long int  numero;
+	struct data data_tarjeta;
+};
+void tarjetase(tarjeta tarjeta[],int);
+void leer(tarjeta tarjeta[],int);
+void verficar(tarjeta tarjeta[],int);
 
 int main(){
 	int opcion;
@@ -17,42 +24,38 @@ int main(){
 	cout<<" 2. Ver datos ";
 	cout<<" 3. salir";
 	cin>>opcion;
+	tarjeta tarjeta[5];
 	switch(opcion){
 		case 1: 
-			tarjetase();
+			tarjetase(tarjeta,5);
+			verficar(tarjeta,5);
 		break;
 		case 2: 
-			leer();
+			verficar(tarjeta,5);
 		break;	
 	
 	} 
 
 	
 }
- void tarjetase(){
+ void tarjetase(tarjeta tarjeta[],int tam){
 	ofstream archivot;
- 	
-	archivot.open ("Tarjetasprederterminadas.dat",ios::out | ios::binary);
- 		if(archivot.fail()){
- 			cout<<"No se puede crear el archivo"<<endl;
- 			exit(1);
-	 	}
 	 	
-	 	data datos[5];
-	 	for(int i=0;i<5;i++){
+	 	
+	 	for(int i=0;i<tam;i++){
 	 	fflush(stdin);	
 	 	cout<<"Digite el numero de tarjeta debito";
-	 	cin.getline(datos[i].numerot,100,'\n');
+	 	cin>>tarjeta[i].numero;
 	 	cout<<"Digite el Pin de tarjeta debito";
-	 	cin.getline(datos[i].pin,100,'\n');
-	 	archivot.write((char*)&datos[i],sizeof(datos));
+	 	cin>>tarjeta[i].data_tarjeta.pin;
+	 	cout<<"Digite la cantidad de dinero que contiene";
+	 	cin>>tarjeta[i].data_tarjeta.saldo;
 	 	}
-		archivot.close();
-	 	
+
 	
 	 	
  }
- 
+/* 
  void leer(){
  	ifstream archivot;
 	archivot.open ("Tarjetasprederterminadas.dat",ios::in | ios::binary);
@@ -60,16 +63,43 @@ int main(){
  			cout<<"No se puede crear el archivo"<<endl;
  			exit(1);
 	 	}
-		data datos[5];
+		tarjeta datos[5];
 				for(int i=0;i<5;i++){
 					if(!archivot.eof()){
 					fflush(stdin);	
 					archivot.read((char*)&datos[i],sizeof(datos));	
-					cout<<"Tarjeta "<<datos[i].numerot<<endl;
-					cout<<"PIN"<<datos[i].pin<<endl;
+					cout<<"Tarjeta "<<datos[i].numero<<endl;
+					cout<<"PIN"<<datos[i].data_tarjeta.pin<<endl;
 					}
 				}
 				
 			
 		archivot.close();
+}
+*/
+void verficar(tarjeta tarjeta[],int tam){
+	int t,p;
+	cout<<"\n\nDigite el numero de la tarjeta";
+	cin>>t;
+	cout<<"Digite el Pin";
+	cin>> p;
+	for(int i=0;i<tam;i++){
+		if(t==tarjeta[i].numero){
+			if(p==tarjeta[i].data_tarjeta.pin){
+				cout<<tarjeta[i].data_tarjeta.saldo;
+			}else{
+				if(i==4){
+			 	cout<<"Clave incorrecta";
+
+			 	}
+			}
+		}else {
+			 if(i==4){
+			 	cout<<"No se encontro tarjeta";
+
+			 	}		
+			}
+	}
+	
+}
 }
