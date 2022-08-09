@@ -1,4 +1,5 @@
 
+
 #include<iostream>
 #include<ctime>
 #include<string.h>
@@ -29,7 +30,7 @@ int main(int argc, char** argv)
 	
 	while (!salida)
  	{	
- 		cout<<"\n\t MENU: ";
+ 		cout<<"\n\n\t MENU: ";
     	cout<<"\n\t 1. Crear fichero: ";
     	cout<<"\n\t 2. Insertar tarjetas y pines: ";
     	cout<<"\n\t 3. Ver datos: ";
@@ -41,19 +42,19 @@ int main(int argc, char** argv)
  		switch(opc)
  		{
  			case 1:
- 				CrearFichero(fichero);
+ 					CrearFichero(fichero);
  			break;
  			case 2:
- 				InsertarDatos(fichero, i);
+ 					InsertarDatos(fichero, i);
  			break;
  			case 3:
- 				VerDatos(fichero, i);
+ 					VerDatos(fichero, i);
  			break;
  			case 4:
-			 	salida=1;
+			 		salida=1;
  			break;
  			default:
-				cout<<"\n\t Opcion no valida, reintente.";
+					cout<<"\n\t Opcion no valida, reintente.";
  		}
  	}
  
@@ -124,7 +125,7 @@ void VerDatos(FILE *Fichero, int i)
  
 	while(!feof(Fichero))
 	{
-		cout<<" "<<indiv[0].ntarjeta<<" "<<indiv[0].pin;
+		cout<<"\n\t "<<indiv[0].ntarjeta<<"\t "<<indiv[0].pin;
 		fread(&indiv, sizeof(struct persona), 1, Fichero);
 		numero++;
 	}
