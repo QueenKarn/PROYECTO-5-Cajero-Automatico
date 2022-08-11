@@ -52,13 +52,14 @@ int main(int argc, char** argv)
 	cout<<"\t                                                         \n";
 	cout<<"\t                                                         \n";
 	cout<<"\t              Proyecto #5 - Cajero Automático            \n";
-	cout<<"\t  	                                                      \n";
-	cout<<"\t       INTEGRANTES:									  \n";
+	cout<<"\t                                                         \n";
+	cout<<"\t       INTEGRANTES:                                      \n";
 	cout<<"\t       Laura Ximena Flechas Ochoa                        \n";
 	cout<<"\t       Paula Catalina Robayo Torres                      \n";
-	cout<<"\t       Henry 'J.M.' Osorio Sánchez                         \n";			
+	cout<<"\t       Henry 'J.M.' Osorio Sánchez                       \n";			
 	cout<<"\t                                                         \n";
 	cout<<"\t ******************************************************* \n\n\n";
+	
 	cout<<"\t";
 	system("pause");
 	system("cls");
@@ -114,12 +115,20 @@ void CrearFichero(FILE *Fichero)
  
  	if(!Fichero)
  	{
- 		Fichero = fopen("fichero", "w");
- 		cout<<"\n\t Archivo creado! \n\n";
+		Fichero = fopen("fichero", "w");
+		cout<<"\n\t Archivo creado! \n\n";
+		
+		cout<<"\t";
+		system("pause");
+		system("cls");
  	}
  	else
  	{
- 		cout<<"\n\t El fichero ya existe! \n\n";
+    	cout<<"\n\t El fichero ya existe! \n\n";
+    	
+		cout<<"\t";
+		system("pause");
+		system("cls");
  	}
   	fclose (Fichero);
  
@@ -133,12 +142,18 @@ void InsertarDatos(FILE *Fichero, int i, int acum)
 	if(Fichero == NULL)
 	{
 		cout<<"\n\t Fichero no existe! \n\tPor favor créelo. \n\n";
+		
+		cout<<"\t";
+		system("pause");
+		system("cls");
+		
 		return;
 	}
- 		persona indiv[255];
- 		int ingtar=0;
- 		
- 		for(int ifor=0; ifor<=0+acum; ifor++)
+	
+		persona indiv[255];
+		int ingtar=0;
+		
+		for(int ifor=0; ifor<=0+acum; ifor++)
  		{
  			cout<<"\n\t Digite el número de tarjeta: ";
 			cin>>indiv[ifor].ntarjeta;
@@ -154,11 +169,9 @@ void InsertarDatos(FILE *Fichero, int i, int acum)
 			{
 				acum++;
 			}
+			fwrite(&indiv, sizeof(struct persona), 1, Fichero);
 		}
   	
-
-  
-	fwrite(&indiv, sizeof(struct persona), 1, Fichero);
 	fclose(Fichero);
  
 	return;
@@ -174,6 +187,10 @@ void VerDatos(FILE *Fichero, int i, int acum)
 	if(Fichero == NULL)
 	{
 		cout<<"\n\t Fichero no existe! \n\tPor favor creelo. \n\n";
+		
+		cout<<"\t";
+		system("pause");
+		system("cls");
 		return;
 	}
  
@@ -186,9 +203,9 @@ void VerDatos(FILE *Fichero, int i, int acum)
 		for(int ifor=0; ifor<=0+acum; ifor++)
 		{
 		cout<<"\n\t "<<indiv[ifor].ntarjeta<<"\t\t "<<indiv[0].pin;
+		fread(&indiv, sizeof(struct persona), 1, Fichero);
 		}
 		
-		fread(&indiv, sizeof(struct persona), 1, Fichero);
 		numero++;
 	}
  	fclose(Fichero);
