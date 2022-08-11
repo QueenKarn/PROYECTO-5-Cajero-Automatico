@@ -165,7 +165,10 @@ void InsertarDatos(FILE *Fichero, int i, int acum)
  
 			cout<<"\t Digite el número PIN: ";
 			cin>>indiv[i].pin;
-			
+			while(indiv[i].pin>10000 || indiv[i].pin<1000){
+				cout<<"\t Por favor, digita un pin de 4 dígitos: ";
+				cin>>indiv[i].pin;	
+			}
 			cout<<"\t Ingrese la cantidad de dinero (COP) que añadió en la inscripción de esta tarjeta: $";
 			cin>>indiv[i].saldo;
 			
