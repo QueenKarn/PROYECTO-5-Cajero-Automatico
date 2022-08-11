@@ -98,6 +98,8 @@ int main(int argc, char** argv)
  			break;
  			default:
 					cout<<"\n\t Opción no valida, reintente.";
+					
+					cout<<"\t ";
 					system("pause");
 					system("cls");
  		}
@@ -118,7 +120,7 @@ void CrearFichero(FILE *Fichero)
 		Fichero = fopen("fichero", "w");
 		cout<<"\n\t Archivo creado! \n\n";
 		
-		cout<<"\t";
+		cout<<"\t ";
 		system("pause");
 		system("cls");
  	}
@@ -126,7 +128,7 @@ void CrearFichero(FILE *Fichero)
  	{
     	cout<<"\n\t El fichero ya existe! \n\n";
     	
-		cout<<"\t";
+		cout<<"\t ";
 		system("pause");
 		system("cls");
  	}
@@ -141,9 +143,9 @@ void InsertarDatos(FILE *Fichero, int i, int acum)
  
 	if(Fichero == NULL)
 	{
-		cout<<"\n\t Fichero no existe! \n\tPor favor créelo. \n\n";
+		cout<<"\n\t Fichero no existe! \n\t Por favor créelo. \n\n";
 		
-		cout<<"\t";
+		cout<<"\t ";
 		system("pause");
 		system("cls");
 		
@@ -158,18 +160,19 @@ void InsertarDatos(FILE *Fichero, int i, int acum)
  			cout<<"\n\t Digite el número de tarjeta: ";
 			cin>>indiv[ifor].ntarjeta;
  
-			cout<<"\n\t Digite el número PIN: ";
+			cout<<"\t Digite el número PIN: ";
 			cin>>indiv[ifor].pin;
 			
 			
-			cout<<"\n\t ¿Desea ingresar otra tarjeta? (Digite 1 para continuar, 2 para finalizar el ingreso): ";
+			cout<<"\n\n\t ¿Desea ingresar otra tarjeta? (Digite 1 para continuar, 2 para finalizar el ingreso): ";
 			cin>>ingtar;
 			
 			if(ingtar == 1)
 			{
 				acum++;
 			}
-			fwrite(&indiv, sizeof(struct persona), 1, Fichero);
+			
+			fwrite(&indiv[ifor], sizeof(struct persona), 1, Fichero);
 		}
   	
 	fclose(Fichero);
@@ -186,24 +189,23 @@ void VerDatos(FILE *Fichero, int i, int acum)
  
 	if(Fichero == NULL)
 	{
-		cout<<"\n\t Fichero no existe! \n\tPor favor creelo. \n\n";
+		cout<<"\n\t Fichero no existe! \n\t Por favor creelo. \n\n";
 		
-		cout<<"\t";
+		cout<<"\t ";
 		system("pause");
 		system("cls");
 		return;
 	}
- 
+
 	fread(&indiv, sizeof(struct persona), 1, Fichero);
-  	
 	cout<<"\n\t N.Tarjeta \tPIN \n";
  
 	while(!feof(Fichero))
 	{
 		for(int ifor=0; ifor<=0+acum; ifor++)
 		{
-		cout<<"\n\t "<<indiv[ifor].ntarjeta<<"\t\t "<<indiv[0].pin;
-		fread(&indiv, sizeof(struct persona), 1, Fichero);
+		cout<<"\n\t "<<indiv[ifor].ntarjeta<<"\t\t "<<indiv[ifor].pin;
+		fread(&indiv[ifor], sizeof(struct persona), 1, Fichero);
 		}
 		
 		numero++;
