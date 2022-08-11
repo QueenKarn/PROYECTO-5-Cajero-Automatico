@@ -1,3 +1,17 @@
+/*
+
+	Bogotá D.C, Colombia
+	Universidad Distrital Francisco José de Caldas, 
+	
+		
+	Proyecto #5 - Cajero Automático
+
+	INTEGRANTES:
+	Laura Ximena Flechas Ochoa
+	Paula Catalina Robayo Torres
+	Henry 'J.M.' Osorio Sánchez
+
+*/
 
 #include<iostream>
 #include<ctime>
@@ -7,8 +21,8 @@
 using namespace std;
 
 void CrearFichero(FILE *Fichero);
-void InsertarDatos(FILE *Fichero, int i);
-void VerDatos(FILE *Fichero, int i);
+void InsertarDatos(FILE *Fichero, int i, int acum);
+void VerDatos(FILE *Fichero, int i, int acum);
 
 struct persona
 {
@@ -22,8 +36,36 @@ int main(int argc, char** argv)
 	setlocale(LC_ALL, ""); // Esta línea permite que la máquina comprenda tíldes.
 	system("color 0f");
 	
+	cout<<"\t ******************************************************* \n";
+	cout<<"\t       _ _  . _  _  _     _    __ _  _  _ __ . _ _       \n";
+	cout<<"\t      | |_| ||_ |_|| |   |_|| | || |||||_| | || | |      \n";
+	cout<<"\t      |_| |_||_ |\\ |_|   | ||_| ||_||||| | | ||_|_|     \n";
+	cout<<"\t                                                         \n";
+	cout<<"\t                                                         \n";
+	cout<<"\t                                                         \n";
+	cout<<"\t                             __                          \n";
+	cout<<"\t                     |   |  |  \\                        \n";
+	cout<<"\t                     |   |  |   \\                       \n";
+	cout<<"\t                     |   |  |   |                        \n";
+	cout<<"\t                     |   |  |   /                        \n";
+	cout<<"\t                     |___|  |__/                         \n";
+	cout<<"\t                                                         \n";
+	cout<<"\t                                                         \n";
+	cout<<"\t              Proyecto #5 - Cajero Automático            \n";
+	cout<<"\t  	                                                      \n";
+	cout<<"\t       INTEGRANTES:									  \n";
+	cout<<"\t       Laura Ximena Flechas Ochoa                        \n";
+	cout<<"\t       Paula Catalina Robayo Torres                      \n";
+	cout<<"\t       Henry 'J.M.' Osorio Sánchez                         \n";			
+	cout<<"\t                                                         \n";
+	cout<<"\t ******************************************************* \n\n\n";
+	cout<<"\t";
+	system("pause");
+	system("cls");
+	
+	
 	cout<<"\n\t Bienvenido, este programa define un registro recopilatorio de n países por medio de la sentencia struct. \n\n";
-    int i=0, opc=0, salida=0;	
+    int i=0, opc=0, salida=0, acum=0;	
     
 	FILE *fichero;
 	
@@ -37,6 +79,7 @@ int main(int argc, char** argv)
     	
  		cout<<"\n\t Digite la opción: ";
  		cin>>opc;
+ 		cout<<"\n\n";
  
  		switch(opc)
  		{
@@ -44,16 +87,18 @@ int main(int argc, char** argv)
  					CrearFichero(fichero);
  			break;
  			case 2:
- 					InsertarDatos(fichero, i);
+ 					InsertarDatos(fichero, i, acum);
  			break;
  			case 3:
- 					VerDatos(fichero, i);
+ 					VerDatos(fichero, i, acum);
  			break;
  			case 4:
 			 		salida=1;
  			break;
  			default:
-					cout<<"\n\t Opcion no valida, reintente.";
+					cout<<"\n\t Opción no valida, reintente.";
+					system("pause");
+					system("cls");
  		}
  	}
  
@@ -70,33 +115,47 @@ void CrearFichero(FILE *Fichero)
  	if(!Fichero)
  	{
  		Fichero = fopen("fichero", "w");
- 		cout<<"\n\tArchivo creado!";
+ 		cout<<"\n\t Archivo creado! \n\n";
  	}
  	else
  	{
- 		cout<<"\n\tEl fichero ya existe!";
+ 		cout<<"\n\t El fichero ya existe! \n\n";
  	}
   	fclose (Fichero);
  
  	return;
 }
  
-void InsertarDatos(FILE *Fichero, int i)
+void InsertarDatos(FILE *Fichero, int i, int acum)
 {
 	Fichero = fopen("fichero", "a+");
  
 	if(Fichero == NULL)
 	{
-		cout<<"\n\tFichero no existe! \n\tPor favor créelo.";
+		cout<<"\n\t Fichero no existe! \n\tPor favor créelo. \n\n";
 		return;
 	}
- 		persona indiv[1];
+ 		persona indiv[255];
+ 		int ingtar=0;
  		
-  		cout<<"\n\tDigite el número de tarjeta: ";
-		cin>>indiv[0].ntarjeta;
+ 		for(int ifor=0; ifor<=0+acum; ifor++)
+ 		{
+ 			cout<<"\n\t Digite el número de tarjeta: ";
+			cin>>indiv[ifor].ntarjeta;
  
-		cout<<"\n\tDigite el número PIN: ";
-		cin>>indiv[0].pin;
+			cout<<"\n\t Digite el número PIN: ";
+			cin>>indiv[ifor].pin;
+			
+			
+			cout<<"\n\t ¿Desea ingresar otra tarjeta? (Digite 1 para continuar, 2 para finalizar el ingreso): ";
+			cin>>ingtar;
+			
+			if(ingtar == 1)
+			{
+				acum++;
+			}
+		}
+  	
 
   
 	fwrite(&indiv, sizeof(struct persona), 1, Fichero);
@@ -105,16 +164,16 @@ void InsertarDatos(FILE *Fichero, int i)
 	return;
 }
  
-void VerDatos(FILE *Fichero, int i)
+void VerDatos(FILE *Fichero, int i, int acum)
 {
 	int numero=1;
-	persona indiv[1];
+	persona indiv[255];
 	
  	Fichero=fopen("fichero", "r");
  
 	if(Fichero == NULL)
 	{
-		cout<<"\n\tFichero no existe! \n\tPor favor creelo";
+		cout<<"\n\t Fichero no existe! \n\tPor favor creelo. \n\n";
 		return;
 	}
  
@@ -124,7 +183,11 @@ void VerDatos(FILE *Fichero, int i)
  
 	while(!feof(Fichero))
 	{
-		cout<<"\n\t "<<indiv[0].ntarjeta<<"\t "<<indiv[0].pin;
+		for(int ifor=0; ifor<=0+acum; ifor++)
+		{
+		cout<<"\n\t "<<indiv[ifor].ntarjeta<<"\t\t "<<indiv[0].pin;
+		}
+		
 		fread(&indiv, sizeof(struct persona), 1, Fichero);
 		numero++;
 	}
