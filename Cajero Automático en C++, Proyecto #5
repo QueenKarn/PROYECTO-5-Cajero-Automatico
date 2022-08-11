@@ -28,7 +28,7 @@ struct persona
 {
 	unsigned int ntarjeta;
     int pin;
-    int dinero;
+    int saldo;
 };
 
 int main(int argc, char** argv)
@@ -155,13 +155,16 @@ void InsertarDatos(FILE *Fichero, int i, int acum)
 		persona indiv[255];
 		int ingtar=0;
 		
-		for(int ifor=0; ifor<=0+acum; ifor++)
+		for(int i=0; i<=0+acum; i++)
  		{
  			cout<<"\n\t Digite el número de tarjeta: ";
-			cin>>indiv[ifor].ntarjeta;
+			cin>>indiv[i].ntarjeta;
  
 			cout<<"\t Digite el número PIN: ";
-			cin>>indiv[ifor].pin;
+			cin>>indiv[i].pin;
+			
+			cout<<"\t Ingrese la cantidad de dinero (COP) que añadió en la inscripción de esta tarjeta: $";
+			cin>>indiv[i].saldo;
 			
 			
 			cout<<"\n\n\t ¿Desea ingresar otra tarjeta? (Digite 1 para continuar, 2 para finalizar el ingreso): ";
@@ -172,7 +175,7 @@ void InsertarDatos(FILE *Fichero, int i, int acum)
 				acum++;
 			}
 			
-			fwrite(&indiv[ifor], sizeof(struct persona), 1, Fichero);
+			fwrite(&indiv[i], sizeof(struct persona), 1, Fichero);
 		}
   	
 	fclose(Fichero);
@@ -198,14 +201,14 @@ void VerDatos(FILE *Fichero, int i, int acum)
 	}
 
 	fread(&indiv, sizeof(struct persona), 1, Fichero);
-	cout<<"\n\t N.Tarjeta \tPIN \n";
+	cout<<"\n\t N.Tarjeta \tPIN \tSaldo \n";
  
 	while(!feof(Fichero))
 	{
-		for(int ifor=0; ifor<=0+acum; ifor++)
+		for (i=0; i<=0+acum; i++)
 		{
-		cout<<"\n\t "<<indiv[ifor].ntarjeta<<"\t\t "<<indiv[ifor].pin;
-		fread(&indiv[ifor], sizeof(struct persona), 1, Fichero);
+		cout<<"\n\t "<<indiv[i].ntarjeta<<"\t"<<indiv[i].pin<<"\t "<<indiv[i].saldo;
+		fread(&indiv[i], sizeof(struct persona), 1, Fichero);
 		}
 		
 		numero++;
