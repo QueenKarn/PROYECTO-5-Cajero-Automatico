@@ -214,7 +214,6 @@ void VerDatos(FILE *Fichero)
 	{
 		cout<<"\n\t "<<tarjeta.numero<<"\t"<<tarjeta.data_tarjeta.pin<<"\t "<<tarjeta.data_tarjeta.saldo;
 		fread(&tarjeta, sizeof(struct tarjeta), 1, Fichero);
-		
 	}
  	fclose(Fichero);
  
@@ -282,7 +281,7 @@ void Transaccion(FILE *Fichero){
 							int pos=ftell(Fichero)-sizeof(tarjeta);
 							
 							fseek(Fichero,pos,SEEK_SET);
-           					fwrite(&tarjeta, sizeof(tarjeta), 1, Fichero);
+							fwrite(&tarjeta, sizeof(tarjeta), 1, Fichero);
            					
 							cout<<"\n\t Retiro hecho con éxito.";
 							cout<<"\n\t ¿Quiere hacer otro retiro?. ";
@@ -373,12 +372,12 @@ void Ingreso(FILE *Fichero)
  
 	while(!feof(Fichero))
 	{
-		 if (cod==tarjeta.numero)
+		if (cod==tarjeta.numero)
         {
         	if(p==tarjeta.data_tarjeta.pin){
-        		cout<<"MENÚ"<<endl;
-				cout<< "1. VER DATOS"<<endl;
-				cout<< "2. INGRESAR MONTO "<<endl;
+				cout<<"\n\t MENÚ"<<endl;
+				cout<< "\t 1. VER SALDO"<<endl;
+				cout<< "\t 2. REALIZAR INGRESO "<<endl;
 				int opcion;
 				cin>>opcion;
 				switch(opcion){
@@ -389,25 +388,33 @@ void Ingreso(FILE *Fichero)
 					case 2:
 						float plata=0,plataT=0,eleccion=0;
 						int aux=0;
-						do{	
+						do
+						{	
 						    aux=aux+1;
-							cout<<"De cuanto quiere hacer el ingreso";
+							cout<<"\t\n ¿Cuánto $ quiere ingresar en su transacción?. ";
 							cin>>plata;
-							tarjeta.data_tarjeta.saldo=tarjeta.data_tarjeta.saldo+plata;
-							int pos=ftell(Fichero)-sizeof(tarjeta);
-          					fseek(Fichero,pos,SEEK_SET);
-           					fwrite(&tarjeta, sizeof(tarjeta), 1, Fichero);
-							cout<<"ingreso hecho con exito";
-							cout<<"Quire hacer otro inreso?";
-							cout<<" 1.SI 2.No";
-							cin>>eleccion;
 							
-						}while(eleccion==1 & aux!=3);
-						cout<<fixed<<"su salado es de:"<<tarjeta.data_tarjeta.saldo<<endl;
+							tarjeta.data_tarjeta.saldo=tarjeta.data_tarjeta.saldo+plata;
+							
+							int pos=ftell(Fichero)-sizeof(tarjeta);
+							
+							fseek(Fichero,pos,SEEK_SET);
+							fwrite(&tarjeta, sizeof(tarjeta), 1, Fichero);
+           					
+							cout<<"\n\t Ingreso hecho con éxito.";
+							cout<<"\n\t ¿Quiere hacer otro ingreso?. ";
+							cout<<"\n\t 1.Si \n 2.No";
+							cin>>eleccion;
+						}
+						while(eleccion==1 & aux!=3);
+						
+						cout<<fixed<<"\n\t su saldo es de: "<<tarjeta.data_tarjeta.saldo<<endl;
 						system("PAUSE");
-						cout<<"/n Menu"<<endl;
-						cout<<"1.Ver transacción";
-						cout<<"2.Salir";
+						
+						cout<<"\n MENÚ"<<endl;
+						cout<<"\n\t 1.Ver transacción";
+						cout<<"\n\t 2.Salir";
+						
 						cin>>opcion;
 						switch(opcion){
 							case 1:
@@ -437,7 +444,7 @@ void Ingreso(FILE *Fichero)
 			}
 			else
 			{
-				cout<<"La clave es incorrecta";
+				cout<<"\n\t La clave es incorrecta.";
 			}      
            system("PAUSE");
            break;
