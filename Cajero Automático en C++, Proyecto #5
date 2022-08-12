@@ -42,10 +42,10 @@ int main(int argc, char** argv)
 	setlocale(LC_ALL, ""); // Esta línea permite que la máquina comprenda tíldes.
 	system("color 0f");
 	
-	cout<<"\t ******************* \n";
-	cout<<"\t      _  _  . _  _  _     _    _ _  _  _ _ . _  _      \n";
-	cout<<"\t     |  || || ||| |   ||| | || |||||_| | ||  | |     \n";
-	cout<<"\t     |_ | ||| |\\ ||   | ||| ||||||| | | || |_|    \n";
+	cout<<"\t ******************************************************* \n";
+	cout<<"\t      _  _  . _  _  _     _    __ _  _  _ __ . _  _      \n";
+	cout<<"\t     |  |_| ||_ |_|| |   |_|| | || |||||_| | ||  | |     \n";
+	cout<<"\t     |_ | |_||_ |\\ |_|   | ||_| ||_||||| | | ||_ |_|    \n";
 	cout<<"\t                                                         \n";
 	cout<<"\t                                                         \n";
 	cout<<"\t                                                         \n";
@@ -64,7 +64,7 @@ int main(int argc, char** argv)
 	cout<<"\t       Paula Catalina Robayo Torres                      \n";
 	cout<<"\t       Henry 'J.M.' Osorio Sánchez                       \n";			
 	cout<<"\t                                                         \n";
-	cout<<"\t ******************* \n\n\n";
+	cout<<"\t ******************************************************* \n\n\n";
 	
 	cout<<"\t";
 	system("pause");
