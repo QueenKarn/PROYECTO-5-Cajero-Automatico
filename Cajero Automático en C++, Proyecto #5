@@ -242,8 +242,7 @@ void Transaccion(FILE *Fichero){
 	cout<<"\t Ingrese la tarjeta a buscar para realizar el retiro de dinero: ";
     double cod;
     cin>>cod;
-    
-    cout<<"\n\t Ingrese el pin de la tarjeta a buscar para realizar el retiro de dinero: ";
+    cout<<"\t Ingrese el pin de la tarjeta a buscar para realizar el retiro de dinero: ";
     int p;
     cin>>p;
     
@@ -259,13 +258,15 @@ void Transaccion(FILE *Fichero){
 				cout<< "\t 1. VER SALDO"<<endl;
 				cout<< "\t 2. REALIZAR RETIRO "<<endl;
 				int opcion;
+				cout<<"\n\t Digite la opción: ";
 				cin>>opcion;
-				
+				cout<<"\n\n";
+			
 				switch(opcion)
 				{
 					case 1:
 							cout<<"\t Su cuenta tiene en este momento: $"<<tarjeta.data_tarjeta.saldo;
-						
+													
 					break;
 					case 2:
 						float plata=0,plataT=0,eleccion=0;
@@ -335,9 +336,10 @@ void Transaccion(FILE *Fichero){
 			{
 				cout<<"\n\t La clave es incorrecta.";
 			}
-			      
-           system("PAUSE");
-           break;
+		
+			cout<<"\n\t ";	      
+			system("PAUSE");
+			break;
         }
 		fread(&tarjeta, sizeof(struct tarjeta), 1, Fichero);
 		
@@ -367,8 +369,7 @@ void Ingreso(FILE *Fichero)
 	cout<<"\t Ingrese la tarjeta a buscar para realizar el ingreso de dinero: ";
     double cod;
     cin>>cod;
-    
-    cout<<"\n\t Ingrese el pin de la tarjeta a buscar para realizar el ingreso de dinero: ";
+    cout<<"\t Ingrese el pin de la tarjeta a buscar para realizar el ingreso de dinero: ";
     int p;
     cin>>p;
     
