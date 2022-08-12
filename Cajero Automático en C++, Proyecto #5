@@ -239,10 +239,10 @@ void Transaccion(FILE *Fichero){
 		system("cls");
 		return;
 	}
-	cout<<"\t Ingrese la tarjeta a buscar para realizar el retiro de dinero: ";
+	cout<<"\t Ingrese el NÚMERO de tarjeta a buscar para realizar el retiro de dinero: ";
     double cod;
     cin>>cod;
-    cout<<"\t Ingrese el pin de la tarjeta a buscar para realizar el retiro de dinero: ";
+    cout<<"\t Ingrese el PIN de la tarjeta a buscar para realizar el retiro de dinero: ";
     int p;
     cin>>p;
     
@@ -274,12 +274,12 @@ void Transaccion(FILE *Fichero){
 						do
 						{	
 						    aux=aux+1;
-							cout<<"\t\n ¿Cuánto $ quiere retirar en su transacción?. (máximo 100000)";
+							cout<<"\n\t ¿Cuánto $ quiere retirar en su transacción?. (máximo 100000)";
 							cin>>plata;
 							
 							while (plata>100000|| plata>tarjeta.data_tarjeta.saldo)
 							{
-								cout<<"\t\n Ingrese un valor valido.";
+								cout<<"\n\t Ingrese un valor valido.";
 								cin>>plata;
 							}
 							tarjeta.data_tarjeta.saldo=tarjeta.data_tarjeta.saldo-plata;
@@ -366,10 +366,10 @@ void Ingreso(FILE *Fichero)
 		return;
 	}
 	
-	cout<<"\t Ingrese la tarjeta a buscar para realizar el ingreso de dinero: ";
+	cout<<"\t Ingrese el NÚMERO de tarjeta a buscar para realizar el ingreso de dinero: ";
     double cod;
     cin>>cod;
-    cout<<"\t Ingrese el pin de la tarjeta a buscar para realizar el ingreso de dinero: ";
+    cout<<"\t Ingrese el PIN de la tarjeta a buscar para realizar el ingreso de dinero: ";
     int p;
     cin>>p;
     
@@ -396,7 +396,7 @@ void Ingreso(FILE *Fichero)
 						do
 						{	
 						    aux=aux+1;
-							cout<<"\t\n ¿Cuánto $ quiere ingresar en su transacción?. ";
+							cout<<"\n\t ¿Cuánto $ quiere ingresar en su transacción?. ";
 							cin>>plata;
 							
 							tarjeta.data_tarjeta.saldo=tarjeta.data_tarjeta.saldo+plata;
@@ -451,7 +451,7 @@ void Ingreso(FILE *Fichero)
 			{
 				cout<<"\n\t La clave es incorrecta.";
 			}      
-           system("PAUSE");
+           // system("PAUSE");
            break;
         }
 		fread(&tarjeta, sizeof(struct tarjeta), 1, Fichero);
