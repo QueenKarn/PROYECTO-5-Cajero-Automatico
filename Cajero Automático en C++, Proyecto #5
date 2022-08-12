@@ -15,6 +15,8 @@ Henry 'J.M.' Osorio Sánchez
 
 #include<iostream>
 #include<ctime>
+#include<iomanip>
+#include<vector>
 #include<string.h>
 #include<stdio.h>
 
@@ -109,6 +111,7 @@ int main(int argc, char** argv)
  			break;	
  			case 6:
 			    salida=1;
+			break;
  			default:
 				cout<<"\n\t Opción no valida, reintente.";
 					
@@ -212,10 +215,11 @@ void VerDatos(FILE *Fichero)
  
 	while(!feof(Fichero))
 	{
-		cout<<"\n\t "<<tarjeta.numero<<"\t"<<tarjeta.data_tarjeta.pin<<"\t "<<tarjeta.data_tarjeta.saldo;
+		cout<<"\n\t "<<fixed<<setprecision(0)<<tarjeta.numero<<"\t"<<tarjeta.data_tarjeta.pin<<"\t "<<tarjeta.data_tarjeta.saldo;
 		fread(&tarjeta, sizeof(struct tarjeta), 1, Fichero);
+		
 	}
- 	fclose(Fichero);
+	fclose(Fichero);
  
 	return;
 }
@@ -269,7 +273,7 @@ void Transaccion(FILE *Fichero){
 						do
 						{	
 						    aux=aux+1;
-							cout<<"\t\n ¿Cuánto $ quiere retirar en su transacción?. (máximo 100000): \t";
+							cout<<"\t\n ¿Cuánto $ quiere retirar en su transacción?. (máximo 100000)";
 							cin>>plata;
 							
 							while (plata>100000|| plata>tarjeta.data_tarjeta.saldo)
@@ -291,7 +295,7 @@ void Transaccion(FILE *Fichero){
 						}
 						while(eleccion==1 & aux!=3);
 						
-						cout<<fixed<<"\n\t Su saldo es de: \t "<<tarjeta.data_tarjeta.saldo<<endl;
+						cout<<fixed<<"\n\t Su saldo es de: "<<tarjeta.data_tarjeta.saldo<<endl;
 						system("PAUSE");
 						
 						cout<<"\n MENÚ"<<endl;
@@ -382,7 +386,7 @@ void Ingreso(FILE *Fichero)
 				cin>>opcion;
 				switch(opcion){
 					case 1:
-						cout<<"\t Su cuenta tiene en este momento: \t $"<<tarjeta.data_tarjeta.saldo;
+						cout<<"\t Su cuenta tiene en este momento: $"<<tarjeta.data_tarjeta.saldo;
 						
 					break;
 					case 2:
@@ -401,7 +405,7 @@ void Ingreso(FILE *Fichero)
 							fseek(Fichero,pos,SEEK_SET);
 							fwrite(&tarjeta, sizeof(tarjeta), 1, Fichero);
            					
-							cout<<"\n\t Ingreso hecho con éxito."<<endl;
+							cout<<"\n\t Ingreso hecho con éxito.";
 							cout<<"\n\t ¿Quiere hacer otro ingreso?. ";
 							cout<<"\n\t 1.Si \n 2.No";
 							cin>>eleccion;
