@@ -258,7 +258,7 @@ void Transaccion(FILE *Fichero){
 				cout<< "\t 1. VER SALDO"<<endl;
 				cout<< "\t 2. REALIZAR RETIRO "<<endl;
 				int opcion;
-				cout<<"\n\t Digite la opción: ";
+				cout<<"\t Digite la opción: ";
 				cin>>opcion;
 				cout<<"\n\n";
 			
@@ -288,7 +288,8 @@ void Transaccion(FILE *Fichero){
 							fseek(Fichero,pos,SEEK_SET);
 							fwrite(&tarjeta, sizeof(tarjeta), 1, Fichero);
            					
-							cout<<"\n\t Retiro hecho con éxito.";
+							cout<<"\n\t Retiro hecho con éxito. \n";
+							
 							cout<<"\n\t ¿Quiere hacer otro retiro?. ";
 							cout<<"\n\t 1.Si \n\t 2.No";
 							cin>>eleccion;
@@ -390,7 +391,7 @@ void Ingreso(FILE *Fichero)
 				cout<< "\t 1. VER SALDO"<<endl;
 				cout<< "\t 2. REALIZAR INGRESO "<<endl;
 				int opcion;
-				cout<<"\n\t Digite la opción: ";
+				cout<<"\t Digite la opción: ";
 				cin>>opcion;
 				cout<<"\n\n";
 				
@@ -415,7 +416,8 @@ void Ingreso(FILE *Fichero)
 							fseek(Fichero,pos,SEEK_SET);
 							fwrite(&tarjeta, sizeof(tarjeta), 1, Fichero);
            					
-							cout<<"\n\t Ingreso hecho con éxito.";
+							cout<<"\n\t Ingreso hecho con éxito. \n";
+							
 							cout<<"\n\t ¿Quiere hacer otro ingreso?. ";
 							cout<<"\n\t 1.Si \n\t 2.No";
 							cin>>eleccion;
