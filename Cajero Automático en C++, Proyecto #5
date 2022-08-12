@@ -305,13 +305,17 @@ void Transaccion(FILE *Fichero){
 						cout<<"\n\t 1.Ver transacción";
 						cout<<"\n\t 2.Salir";
 						
+						cout<<"\t Digite la opción: ";
 						cin>>opcion;
+						cout<<"\n\n";
 						
 						switch(opcion){
 							case 1:
 							   int numero=1;
+							   
 							   struct tarjeta tarjeta;
 							   Fichero=fopen("fichero", "r");
+							   
 							   if(Fichero == NULL)
 								{	
 									cout<<"\n\t Fichero no existe! \n\t Por favor creelo. \n\n";
@@ -432,7 +436,10 @@ void Ingreso(FILE *Fichero)
 						cout<<"\n\t 1.Ver transacción";
 						cout<<"\n\t 2.Salir";
 						
+						cout<<"\t Digite la opción: ";
 						cin>>opcion;
+						cout<<"\n\n";
+						
 						switch(opcion){
 							case 1:
 								int numero=1;
