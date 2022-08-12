@@ -274,7 +274,7 @@ void Transaccion(FILE *Fichero){
 						do
 						{	
 						    aux=aux+1;
-							cout<<"\n\t ¿Cuánto $ quiere retirar en su transacción?. (máximo 100000)";
+							cout<<"\n\t ¿Cuánto $ quiere retirar en su transacción?. (máximo 100000): $";
 							cin>>plata;
 							
 							while (plata>100000|| plata>tarjeta.data_tarjeta.saldo)
@@ -290,16 +290,17 @@ void Transaccion(FILE *Fichero){
            					
 							cout<<"\n\t Retiro hecho con éxito.";
 							cout<<"\n\t ¿Quiere hacer otro retiro?. ";
-							cout<<"\n\t 1.Si \n 2.No";
+							cout<<"\n\t 1.Si \n\t 2.No";
 							cin>>eleccion;
 							
 						}
 						while(eleccion==1 & aux!=3);
 						
 						cout<<fixed<<"\n\t Su saldo es de: "<<tarjeta.data_tarjeta.saldo<<endl;
+						cout<<"\t ";
 						system("PAUSE");
 						
-						cout<<"\n MENÚ"<<endl;
+						cout<<"\n\t MENÚ"<<endl;
 						cout<<"\n\t 1.Ver transacción";
 						cout<<"\n\t 2.Salir";
 						
@@ -322,7 +323,12 @@ void Transaccion(FILE *Fichero){
 								fread(&tarjeta, sizeof(struct tarjeta), 1, Fichero);
 								while(!feof(Fichero))
 								{	
-									cout<<tarjeta.trasferencia<<endl;
+									cout<<"\n\t"<<tarjeta.trasferencia;
+									
+									time_t now = time(0); // La librería se encarga de darnos el tiempo exacto que muestra nuestro sistema.
+									char* dt = ctime(&now); //  Convierte el valor que da el sistema del tiempo actual a una cadena de caracteres. (tipo char)
+									cout<<"\n\t Fecha y hora de la transacción: "<<dt<<endl;	// Impresión que determina el tiempo exacto convertido a cadena de caracteres en la variable "dt".
+									
 									fread(&tarjeta, sizeof(struct tarjeta), 1, Fichero);
 								}	
 								
@@ -384,7 +390,10 @@ void Ingreso(FILE *Fichero)
 				cout<< "\t 1. VER SALDO"<<endl;
 				cout<< "\t 2. REALIZAR INGRESO "<<endl;
 				int opcion;
+				cout<<"\n\t Digite la opción: ";
 				cin>>opcion;
+				cout<<"\n\n";
+				
 				switch(opcion){
 					case 1:
 						cout<<"\t Su cuenta tiene en este momento: $"<<tarjeta.data_tarjeta.saldo;
@@ -396,7 +405,7 @@ void Ingreso(FILE *Fichero)
 						do
 						{	
 						    aux=aux+1;
-							cout<<"\n\t ¿Cuánto $ quiere ingresar en su transacción?. ";
+							cout<<"\n\t ¿Cuánto $ quiere ingresar en su transacción?: $";
 							cin>>plata;
 							
 							tarjeta.data_tarjeta.saldo=tarjeta.data_tarjeta.saldo+plata;
@@ -408,15 +417,16 @@ void Ingreso(FILE *Fichero)
            					
 							cout<<"\n\t Ingreso hecho con éxito.";
 							cout<<"\n\t ¿Quiere hacer otro ingreso?. ";
-							cout<<"\n\t 1.Si \n 2.No";
+							cout<<"\n\t 1.Si \n\t 2.No";
 							cin>>eleccion;
 						}
 						while(eleccion==1 & aux!=3);
 						
 						cout<<fixed<<"\n\t su saldo es de: "<<tarjeta.data_tarjeta.saldo<<endl;
+						cout<<"\t ";
 						system("PAUSE");
 						
-						cout<<"\n MENÚ"<<endl;
+						cout<<"\n\t MENÚ"<<endl;
 						cout<<"\n\t 1.Ver transacción";
 						cout<<"\n\t 2.Salir";
 						
@@ -439,7 +449,13 @@ void Ingreso(FILE *Fichero)
 								fread(&tarjeta, sizeof(struct tarjeta), 1, Fichero);
 								while(!feof(Fichero))
 								{	
-									cout<<tarjeta.trasferencia<<endl;
+									
+									cout<<"\n\t"<<tarjeta.trasferencia;
+									
+									time_t now = time(0); // La librería se encarga de darnos el tiempo exacto que muestra nuestro sistema.
+									char* dt = ctime(&now); //  Convierte el valor que da el sistema del tiempo actual a una cadena de caracteres. (tipo char)
+									cout<<"\n\t Fecha y hora de la transacción: "<<dt<<endl;	// Impresión que determina el tiempo exacto convertido a cadena de caracteres en la variable "dt".
+									
 									fread(&tarjeta, sizeof(struct tarjeta), 1, Fichero);
 								}	
 							break;	
